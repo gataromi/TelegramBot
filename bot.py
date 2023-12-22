@@ -5,6 +5,7 @@ import datetime as dt
 import requests
 from bs4 import BeautifulSoup
 from os import environ
+from pprint import pprint
 
 # Parsing
 
@@ -26,8 +27,8 @@ def welcome(message):
 
     # keyboard
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    item1 = types.KeyboardButton("Во сколько сегодня восход🌆")
-    item2 = types.KeyboardButton("Во сколько сегодня закат🏙")
+    item1 = types.KeyboardButton("Во сколько сегодня восход")
+    item2 = types.KeyboardButton("Во сколько сегодня закат")
 
     markup.add(item1, item2)
 
@@ -37,12 +38,18 @@ def welcome(message):
 @bot.message_handler(content_types=['text'])
 def lalala(message):
     if message.chat.type == 'private':
-        if message.text == 'Во сколько сегодня восход🌆':
+        if message.text == 'Во сколько сегодня восход':
             bot.send_message(message.chat.id, 'Сегодня ' + str(dt.datetime.today())[:10] + ' восход в ' + str(sunrise))
-        elif message.text == 'Во сколько сегодня закат🏙':
+            print('sunrise', message)
+            print()
+        elif message.text == 'Во сколько сегодня закат':
             bot.send_message(message.chat.id, 'Сегодня ' + str(dt.datetime.today())[:10] + ' закат в ' + str(sunset))
+            print('sunset', message)
+            print()
         else:
             bot.send_message(message.chat.id, 'Я даже не знаю что сказать')
+            print('nothing', message)
+            print()
 
 # RUN
             
