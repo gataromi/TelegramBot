@@ -1,0 +1,14 @@
+services:
+  gataromi-telegram-bot:
+    container_name: gataromi-telegram-bot
+    image: gataromi-telegram-bot
+    build: .
+    restart: unless-stopped
+    environment:
+      telegram_token: ${TELEGRAM_TOKEN}
+    networks:
+      - gataromi-telegram-bot
+
+networks:
+  gataromi-telegram-bot:
+    name: gataromi-telegram-bot

@@ -1,0 +1,16 @@
+name: Deploy bot
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy bot
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Create container
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: make
